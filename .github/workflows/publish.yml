@@ -31,7 +31,10 @@ jobs:
     - name: Pack
       run: dotnet pack EmailSender.SendGrid/EmailSender.SendGrid.csproj --configuration Release --no-build --output ./nupkgs /p:PackageVersion=${{ steps.extract_version.outputs.VERSION }}
 
+    - name: Add GitHub Packages source to NuGet
+      run: dotnet nuget add source --username sskset --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/sskset/index.json"
+
     - name: Publish to GitHub Packages
-      run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "https://nuget.pkg.github.com/sskset/index.json"
+      run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
