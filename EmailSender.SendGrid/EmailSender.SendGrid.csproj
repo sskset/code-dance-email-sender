@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageReadmeFile>readme.md</PackageReadmeFile>
+    <PackageReadmeFile>./readme.md</PackageReadmeFile>
   </PropertyGroup>
 
 </Project>
