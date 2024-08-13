@@ -16,7 +16,10 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3
       with:
-        dotnet-version: '8.x' # Specify the .NET version you're using
+        dotnet-version: '8.x'
+        source-url: https://nuget.pkg.github.com/sskset/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Extract version from tag
       id: extract_version
@@ -31,10 +34,7 @@ jobs:
     - name: Pack
       run: dotnet pack EmailSender.SendGrid/EmailSender.SendGrid.csproj --configuration Release --no-build --output ./nupkgs /p:PackageVersion=${{ steps.extract_version.outputs.VERSION }}
 
-    - name: Add GitHub Packages source to NuGet
-      run: dotnet nuget add source --username sskset --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/sskset/index.json"
-
     - name: Publish to GitHub Packages
-      run: dotnet nuget push ./nupkgs/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
+      run: dotnet nuget push ./nupkgs/*.nupkg --skip-duplicate --no-symbols true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
