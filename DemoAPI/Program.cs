@@ -19,7 +19,7 @@ public class Program
         // Add services to the container.
 
         // Email Settings
-        builder.Services.AddSendGridEventSender(builder.Configuration);
+        builder.Services.AddSendGridEmailSender(builder.Configuration);
         // ends
 
 

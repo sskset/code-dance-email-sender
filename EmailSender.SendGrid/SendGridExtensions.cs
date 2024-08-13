@@ -11,7 +11,7 @@ namespace EmailSender.SendGrid.Extensions.DependencyInjection
 {
     public static class SendGridEventSenderCollectionExtensions
     {
-        public static IServiceCollection AddSendGridEventSender(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddSendGridEmailSender(this IServiceCollection services, IConfiguration configuration)
         {
 
             services.Configure<EmailSenderConfig>(configuration.GetSection(nameof(EmailSenderConfig)));
