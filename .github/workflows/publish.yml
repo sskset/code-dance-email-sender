@@ -32,10 +32,7 @@ jobs:
       run: dotnet build EmailSender.SendGrid/EmailSender.SendGrid.csproj --configuration Release --no-restore
 
     - name: Pack
-      run: |
-        mkdir ./nupkgs
-        cp EmailSender.SendGrid/readme.md ./nupkgs/
-        dotnet pack EmailSender.SendGrid/EmailSender.SendGrid.csproj --configuration Release --no-build --output ./nupkgs /p:PackageVersion=${{ steps.extract_version.outputs.VERSION }}
+      run: dotnet pack EmailSender.SendGrid/EmailSender.SendGrid.csproj --configuration Release --no-build --output ./nupkgs /p:PackageVersion=${{ steps.extract_version.outputs.VERSION }}
 
     - name: Publish to GitHub Packages
       run: dotnet nuget push ./nupkgs/*.nupkg
