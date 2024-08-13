@@ -19,7 +19,7 @@ jobs:
         dotnet-version: '8.x'
         source-url: https://nuget.pkg.github.com/sskset/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NUGET_AUTH_TOKEN: ${{ secrets.MY_GITHUB_PACKAGE_PAT }}
 
     - name: Extract version from tag
       id: extract_version
