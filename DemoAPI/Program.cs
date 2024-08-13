@@ -1,6 +1,7 @@
 
 using CodeDance.EmailSender;
 using CodeDance.EmailSender.SendGrid;
+using EmailSender.SendGrid.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -18,16 +19,7 @@ public class Program
         // Add services to the container.
 
         // Email Settings
-        builder.Services.Configure<EmailSenderConfig>(builder.Configuration.GetSection("EmailSender"));
-        builder.Services.AddTransient<ISendGridClient>(sp =>
-        {
-            var emailSettings = sp.GetService<IOptions<EmailSenderConfig>>();
-            return new SendGridClient(emailSettings.Value.ApiKey);
-        });
-        builder.Services.AddTransient<IEmailSender>(sp=>{
-            var emailSettings = sp.GetService<IOptions<EmailSenderConfig>>();
-            return new SendGridEmailSender(emailSettings.Value, sp.GetRequiredService<ISendGridClient>());
-        });
+        builder.Services.AddSendGridEventSender(builder.Configuration);
         // ends
 
 
@@ -48,7 +40,6 @@ public class Program
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
-
 
         app.MapControllers();
 
