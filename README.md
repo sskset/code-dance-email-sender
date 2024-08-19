@@ -10,12 +10,19 @@ You can install the package via the NuGet Package Manager, .NET CLI, or by addin
 
 ### Package source
 
-![NuGet](https://nuget.pkg.github.com/sskset/index.json)
+[NuGet](https://nuget.pkg.github.com/sskset/index.json)
 
 ### .NET CLI
 
 ```bash
 dotnet add package CodeDance.EmailSender.SendGrid
+```
+
+### User Secrets
+
+```bash
+dotnet user-secrets init
+dotnet user-secrets set "EmailSenderConfig:ApiKey" "xxxxxx"
 ```
 
 ### Package Reference
@@ -34,7 +41,7 @@ Here is a simple example of how to use the `CodeDance.EmailSender.SendGrid` pack
 
 ```csharp
 // Email Settings
-builder.Services.AddSendGridEventSender(builder.Configuration);
+builder.Services.AddSendGridEmailSender(builder.Configuration);
 // ends
 ```
 
