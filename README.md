@@ -1,8 +1,8 @@
-# EmailSender.SendGrid
+# CodeDance.EmailSender.SendGrid
 
 ## Overview
 
-`EmailSender.SendGrid` is a simple and flexible .NET library for sending emails using the SendGrid API. This package allows you to easily integrate email sending capabilities into your .NET applications, whether you're building a web application, API, or any other .NET-based project.
+`CodeDance.EmailSender.SendGrid` is a simple and flexible .NET library for sending emails using the SendGrid API. This package allows you to easily integrate email sending capabilities into your .NET applications, whether you're building a web application, API, or any other .NET-based project.
 
 ## Installation
 
@@ -15,18 +15,18 @@ You can install the package via the NuGet Package Manager, .NET CLI, or by addin
 ### .NET CLI
 
 ```bash
-dotnet add package EmailSender.SendGrid
+dotnet add package CodeDance.EmailSender.SendGrid
 ```
 
 ### Package Reference
 
 ```bash
-<PackageReference Include="EmailSender.SendGrid" Version="0.0.1" />
+<PackageReference Include="CodeDance.EmailSender.SendGrid" Version="0.0.1" />
 ```
 
 ## Usage
 
-Here is a simple example of how to use the `EmailSender.SendGrid` package to send an email.
+Here is a simple example of how to use the `CodeDance.EmailSender.SendGrid` package to send an email.
 
 ### Example
 

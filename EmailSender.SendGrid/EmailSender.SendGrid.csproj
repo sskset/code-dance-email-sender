@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>CodeDance.EmailSender.SendGrid</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup>
