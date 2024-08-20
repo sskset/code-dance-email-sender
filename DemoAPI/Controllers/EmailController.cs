@@ -22,10 +22,10 @@ public class EmailController : ControllerBase
     [HttpPost(Name = "SendTestEmail")]
     public async Task<IActionResult> SendEmail()
     {
-        await _emailSender.SendAsync(EmailTemplate.EmailConfirmationTemplateId, "sskset@gmail.com", new
+        await _emailSender.SendAsync(EmailTemplate.ConfirmEmail, "sskset+localhost@gmail.com", new
         {
-            email = "sskset@gmail.com",
-            emailConfirmationLink = "https://chatgpt.com"
+            email = "sskset+localhost@gmail.com",
+            emailConfirmationLink = "https://codedance.com.au"
         });
 
         return Ok();
