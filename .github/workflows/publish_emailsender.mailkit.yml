@@ -1,0 +1,38 @@
+name: Publish CodeDance.EmailSender.MailKit to GitHub Packages
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Triggers the workflow on version tags like v1.0.0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.x'
+        source-url: https://nuget.pkg.github.com/sskset/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{ secrets.MY_GITHUB_PACKAGE_PAT }}
+
+    - name: Extract version from tag
+      id: extract_version
+      run: echo "##[set-output name=VERSION;]${GITHUB_REF#refs/tags/v}"
+
+    - name: Install dependencies
+      run: dotnet restore EmailSender.MailKit/EmailSender.MailKit.csproj
+
+    - name: Build
+      run: dotnet build EmailSender.MailKit/EmailSender.MailKit.csproj --configuration Release --no-restore
+
+    - name: Pack
+      run: dotnet pack EmailSender.MailKit/EmailSender.MailKit.csproj --configuration Release --no-build --output ./nupkgs /p:PackageVersion=${{ steps.extract_version.outputs.VERSION }}
+
+    - name: Publish to GitHub Packages
+      run: dotnet nuget push ./nupkgs/*.nupkg
