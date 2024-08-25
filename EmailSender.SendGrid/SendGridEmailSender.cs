@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CodeDance.EmailSender.SendGrid
+namespace CodeDance.EmailSender
 {
-    public class SendGridEmailSender : IEmailSender
+    public class SendGridEmailSender : ITemplateEmailSender
     {
         private readonly EmailSenderConfig _config;
         private readonly ISendGridClient _client;
